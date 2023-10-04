@@ -7,7 +7,7 @@ interface FormValues {
   password: string;
 }
 
-const missionForm = () => {
+const MissionForm = () => {
   const errorRequired = "Campo obrigatório";
   const min2CharError = "Minimo 2 caracteres";
 
@@ -45,4 +45,4 @@ const missionForm = () => {
     </form>
   );
 };
-export default missionForm;
+export default MissionForm;

@@ -1,28 +1,27 @@
 import * as yup from "yup";
 import React from "react";
 import { Grid } from "@mui/material";
+import { useFormik } from "formik";
 
 interface FormValues {
-  user_email: string;
-  password: string;
+  checked: string[];
+  tank_level: string;
+  obs: string;
 }
 
-const inspForm = () => {
+const InspForm = () => {
   const errorRequired = "Campo obrigatório";
-  const min2CharError = "Minimo 2 caracteres";
 
   const schemaUsers = yup.object({
-    user_email: yup
-      .string()
-      .email()
-      .min(3, min2CharError)
-      .required(errorRequired),
-    password: yup.string().required(errorRequired),
+    checked: yup.string().required(errorRequired),
+    tank_level: yup.string().required(errorRequired),
+    obs: yup.string().required(errorRequired),
   });
 
   const initialValues: FormValues = {
-    user_email: "",
-    password: "",
+    checked: [],
+    tank_level: "cheio",
+    obs: "",
   };
 
   const formik = useFormik({
@@ -30,8 +29,9 @@ const inspForm = () => {
     validationSchema: schemaUsers,
     onSubmit: (values) => {
       const newUserData = {
-        user_email: values.user_email,
-        user_password: values.password,
+        checked: values.checked,
+        tank_level: values.tank_level,
+        obs: values.obs,
       };
 
       console.log(newUserData);
@@ -46,4 +46,4 @@ const inspForm = () => {
   );
 };
 
-export default inspForm;
+export default InspForm;
